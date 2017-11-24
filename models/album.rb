@@ -30,6 +30,13 @@ class Album
     return Album.new(album)
   end
 
+  def self.total_stock
+    sql = "SELECT SUM(quantity)
+          FROM albums"
+    total = SqlRunner.run(sql)[0]["sum"].to_i
+    return total
+  end
+
   def save()
     sql = 'INSERT INTO albums (
     title,
