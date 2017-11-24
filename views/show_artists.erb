@@ -1,0 +1,17 @@
+<h2 style="color:#9E9E9E;"><%= @artist.name %></h2>
+
+  <table style="width:100%">
+    <tr>
+      <th>Title </th>
+      <th>Quantity </th>
+      <th>Stock Level</th>
+    </tr>
+      <% @artist_albums = @artist.albums() %>
+      <% @artist_albums.each do |album| %>
+    <tr>
+      <td><%= album.title %></td>
+      <td><%= album.quantity %></td>
+      <td><%= album.stock_level %></td>
+    </tr>
+      <% end %>
+  </table>

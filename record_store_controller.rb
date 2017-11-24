@@ -9,3 +9,9 @@ get '/artists' do
   @albums = Album.list_all
   erb(:artists)
 end
+
+get '/artists/:id' do
+  @artist = Artist.find(params[:id])
+  @albums = Album.list_all
+  erb(:show_artists)
+end
