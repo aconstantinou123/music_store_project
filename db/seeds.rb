@@ -39,5 +39,6 @@ album10 = Album.new('title' => 'Filosofem', 'artist_id' => artist5.id, 'quantity
 album10.save()
 
 
+
 binding.pry
 nil
