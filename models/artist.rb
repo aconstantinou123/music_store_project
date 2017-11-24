@@ -15,7 +15,8 @@ class Artist
   end
 
   def self.list_all()
-    sql = "SELECT * FROM artists"
+    sql = "SELECT * FROM artists
+          ORDER BY artists.name ASC"
     artists = SqlRunner.run(sql)
     return artists.map{|artist| Artist.new(artist)}
   end
@@ -56,7 +57,8 @@ class Artist
           FROM albums
           INNER JOIN artists
           ON albums.artist_id = artists.id
-          WHERE artists.id = $1"
+          WHERE artists.id = $1
+          ORDER BY albums.title ASC"
     values = [@id]
     albums = SqlRunner.run(sql, values)
     return albums.map{|album| Album.new(album)}
