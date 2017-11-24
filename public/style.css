@@ -1,5 +1,15 @@
-body {
-  background-color: #524D52;
+#background {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+}
+
+.stretch {
+    width:100%;
+    height:100%;
 }
 
 h2 {
@@ -12,15 +22,40 @@ h2 {
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
-table, th, td {
-    border: 3px solid black;
+table, td {
+    border: 1px solid black;
     border-collapse: collapse;
     padding: 15px;
-    background-color: #CE6F6F;
+    background-color: rgba(131, 115, 115, 0.5);
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	  font-size: 24px;
 	  font-style: normal;
 	  font-variant: normal;
 	  font-weight: 500;
 	  line-height: 15px;
+}
+
+th {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 15px;
+  background-color: rgba(131, 115, 115, 0.5);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 1500;
+  line-height: 15px;
+}
+
+a {
+    color: ##A7A2A2;
+    text-decoration: none;
+}
+
+a:hover
+{
+     color:#444444;
+     text-decoration:none;
+     cursor:pointer;
 }

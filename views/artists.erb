@@ -1,4 +1,4 @@
-<h2 style="color:white;">Artists: </h2>
+<h2 style="color:#9E9E9E;">Artists: </h2>
 
     <table style="width:100%">
       <tr>
@@ -10,7 +10,7 @@
       <tr>
         <td><%= artist.name %></td>
         <td><%= Album.albums_per_artist(artist.id) %></td>
-        <td>View Info</td>
+        <td><a href="/artist/:id">View Info</a></td>
       </tr>
         <% end %>
   </table>
