@@ -16,6 +16,20 @@ class Album
     SqlRunner.run(sql)
   end
 
+  def self.list_all()
+    sql = "SELECT * FROM albums"
+    albums = SqlRunner.run(sql)
+    return albums.map{|artist| Album.new(artist)}
+  end
+
+  def self.find(id)
+    sql = "SELECT * FROM albums
+          WHERE id = $1"
+    values = [id]
+    album = SqlRunner.run(sql, values).first
+    return Album.new(album)
+  end
+
   def save()
     sql = 'INSERT INTO albums (
     title,
@@ -25,6 +39,13 @@ class Album
     RETURNING *'
     values = [@title, @artist_id, @quantity]
     @id = SqlRunner.run(sql, values)[0]['id'].to_i
+  end
+
+  def update()
+    sql = "UPDATE albums SET (
+    title, artist_id, quantity) = ($1, $2, $3) WHERE id = $4"
+    values = [@title, @artist_id, @quantity, @id]
+    SqlRunner.run(sql, values)
   end
 
 
