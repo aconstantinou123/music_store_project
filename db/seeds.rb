@@ -27,7 +27,7 @@ album4 = Album.new('title' => 'De Mysteriis Dom Sathanas', 'artist_id' => artist
 album4.save()
 album5 = Album.new('title' => 'A Blaze in the Northern Sky', 'artist_id' => artist2.id, 'quantity' => 5)
 album5.save()
-album6 = Album.new('title' => 'Under a Funeral Moon', 'artist_id' => artist2.id, 'quantity' => 4)
+album6 = Album.new('title' => 'Under a Funeral Moon', 'artist_id' => artist2.id, 'quantity' => 0)
 album6.save()
 album7 = Album.new('title' => 'Ruun', 'artist_id' => artist4.id, 'quantity' => 3)
 album7.save()

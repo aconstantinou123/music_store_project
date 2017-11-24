@@ -82,5 +82,17 @@ class Album
     return Artist.new(artist)
   end
 
+  def stock_level
+    if @quantity == 0
+      return 'Out of Stock'
+  elsif @quantity >= 10
+      return 'High'
+    elsif @quantity >= 5
+      return 'Medium'
+    elsif @quantity < 5
+      return 'Low'
+    end
+  end
+
 
 end
