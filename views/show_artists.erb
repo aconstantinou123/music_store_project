@@ -1,4 +1,4 @@
-<h2 style="color:#9E9E9E;"><%= @artist.name %></h2>
+<h2 style="color:white;"><%= @artist.name %></h2>
 
   <table style="width:100%">
     <tr>
@@ -15,3 +15,7 @@
     </tr>
       <% end %>
   </table>
+
+  <form action="/artists" method="get">
+    <button class = "button" type="submit" formaction="/artists">Back</button>
+  </form>

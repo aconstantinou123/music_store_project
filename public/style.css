@@ -26,7 +26,7 @@ table, td {
     border: 1px solid black;
     border-collapse: collapse;
     padding: 15px;
-    background-color: rgba(131, 115, 115, 0.5);
+    background-color: rgba(117, 117, 117, 0.5);
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	  font-size: 24px;
 	  font-style: normal;
@@ -39,8 +39,9 @@ th {
   border: 1px solid black;
   border-collapse: collapse;
   padding: 15px;
-  background-color: rgba(131, 115, 115, 0.5);
+  background-color: rgba(117, 117, 117, 0.5);
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: white;
   font-size: 24px;
   font-style: normal;
   font-variant: normal;
@@ -49,7 +50,7 @@ th {
 }
 
 a {
-    color: #D3D3D3;
+    color:#9E9E9E;
     text-decoration: none;
 }
 
@@ -58,4 +59,20 @@ a:hover
      color:#444444;
      text-decoration:none;
      cursor:pointer;
+}
+
+.button {
+    background-color: rgba(0,0,0,0.75);
+    border: none;
+    color: #9E9E9E;
+    padding: 20px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	  font-size: 15px;
+	  font-style: normal;
+	  font-variant: normal;
+	  font-weight: 500;
+	  line-height: 15px;
 }

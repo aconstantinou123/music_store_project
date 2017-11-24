@@ -10,6 +10,10 @@ get '/artists' do
   erb(:artists)
 end
 
+get '/artists/new' do
+  erb(:new)
+end
+
 get '/artists/:id' do
   @artist = Artist.find(params[:id])
   @albums = Album.list_all
