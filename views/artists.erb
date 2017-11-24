@@ -1,0 +1,16 @@
+<h2 style="color:white;">Artists: </h2>
+
+    <table style="width:100%">
+      <tr>
+        <th>Name </th>
+        <th>Total Stock </th>
+        <th>Information</th>
+      </tr>
+        <% @artists.each do |artist| %>
+      <tr>
+        <td><%= artist.name %></td>
+        <td><%= Album.albums_per_artist(artist.id) %></td>
+        <td>View Info</td>
+      </tr>
+        <% end %>
+  </table>
