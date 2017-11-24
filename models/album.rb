@@ -37,6 +37,15 @@ class Album
     return total
   end
 
+  def self.albums_per_artist(id)
+    sql = "SELECT SUM(quantity)
+          FROM albums
+          WHERE albums.artist_id = $1"
+    values = [id]
+    total = SqlRunner.run(sql, values)[0]['sum'].to_i
+    return total
+  end
+
   def save()
     sql = 'INSERT INTO albums (
     title,
