@@ -14,6 +14,20 @@ class Artist
     SqlRunner.run(sql)
   end
 
+  def self.list_all()
+    sql = "SELECT * FROM artists"
+    artists = SqlRunner.run(sql)
+    return artists.map{|artist| Artist.new(artist)}
+  end
+
+  def self.find(id)
+    sql = "SELECT * FROM artists
+          WHERE id = $1"
+    values = [id]
+    artist = SqlRunner.run(sql, values).first
+    return Artist.new(artist)
+  end
+
   def save()
     sql = 'INSERT INTO artists (
     name
@@ -22,5 +36,7 @@ class Artist
     values = [@name]
     @id = SqlRunner.run(sql, values)[0]['id'].to_i
   end
+
+
 
 end
