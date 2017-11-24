@@ -1,5 +1,9 @@
 <h2 style="color:white;"><%= @artist.name %></h2>
 
+<form action="/artists/<%= @artist.id %>/edit" method="get">
+  <button class = "button" type="submit" formaction="/artists/<%= @artist.id %>/edit">Edit Artist Information</button>
+</form>
+
   <table style="width:100%">
     <tr>
       <th>Title </th>
@@ -15,6 +19,11 @@
     </tr>
       <% end %>
   </table>
+
+  <form method="post" action="/artists/<%= @artist.id %>">
+  <input type="hidden" name="_method" value="delete">
+  <button class="button">Delete Artist</button>
+</form>
 
   <form action="/artists" method="get">
     <button class = "button" type="submit" formaction="/artists">Back</button>

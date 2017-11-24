@@ -1,4 +1,5 @@
-<form method="post" action="/artists">
+<form method="post" action="/artists/<%= @artist.id %>">
+  <input type="hidden" name="_method" value="put">
 
   <div class="field-group">
     <label for="first-name-field" class="label">Name:</label>
@@ -9,10 +10,11 @@
         id="name-field"
         placeholder="Artist Name"
         required
+        value="<%= @artist.name %>"
       />
    </div>
   </div>
 
 
-  <button class="big-button button">Add New Artist</button>
+  <button class="big-button button">Edit Artist Information</button>
 </form>
