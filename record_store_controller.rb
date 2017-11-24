@@ -5,9 +5,15 @@ require_relative('models/album.rb')
 require_relative('models/artist.rb')
 
 get '/artists' do
-  @artists = Artist.list_all
-  @albums = Album.list_all
+  @artists = Artist.list_all()
+  @albums = Album.list_all()
   erb(:artists)
+end
+
+get '/albums' do
+  @artists = Artist.list_all()
+  @albums = Album.list_all()
+  erb(:albums)
 end
 
 get '/artists/new' do

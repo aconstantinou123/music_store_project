@@ -1,0 +1,24 @@
+<h2 style="color:white;">Albums: </h2>
+
+<form action="/artists" method="get">
+  <button class = "button" type="submit" formaction="/artists">View All Artists</button>
+</form>
+
+<table style="width:100%">
+  <tr>
+    <th>Title </th>
+    <th>Artist </th>
+    <th>Stock</th>
+  </tr>
+  <% @albums.each do |album| %>
+  <tr>
+    <td><%= album.title %></td>
+    <td><%= album.artist.name %></td>
+    <td><%= album.quantity %></td>
+  </tr>
+  <% end %>
+  <tr>
+    <td colspan="2" style="color:white;">Total Stock</td>
+    <td><%= Album.total_stock %></td> 
+  </tr>
+</table>
