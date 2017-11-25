@@ -1,7 +1,7 @@
 <form method="post" action="/albums/<%= @album.id %>">
   <input type="hidden" name="_method" value="put">
 
-<h2 style="color:white">Please input the details to create a new <%= @album.artist.name %> album</h2>
+<h2 style="color:white">Please input new details update the <%= @album.artist.name %> album</h2>
 
   <div class="field-group">
     <label for="Artist-field" class="label"></label>
@@ -44,5 +44,5 @@
     </div>
   </div>
 
-  <button class="big-button button">Add New Album</button>
+  <button class="big-button button">Confirm Edits</button>
 </form>

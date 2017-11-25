@@ -2,11 +2,12 @@ require_relative('../db/sql_runner.rb')
 
 class Artist
 
-  attr_accessor :id, :name
+  attr_accessor :id, :name, :logo
 
   def initialize(options)
     @id = options['id'].to_i
     @name = options['name']
+    @logo = options['logo'].to_s
   end
 
   def self.delete_all()
@@ -31,17 +32,17 @@ class Artist
 
   def save()
     sql = 'INSERT INTO artists (
-    name
-    ) VALUES ( $1 )
+    name, logo
+    ) VALUES ( $1, $2 )
     RETURNING *'
-    values = [@name]
+    values = [@name, @logo]
     @id = SqlRunner.run(sql, values)[0]['id'].to_i
   end
 
   def update()
     sql = "UPDATE artists SET (
-    name) = ($1) WHERE id = $2"
-    values = [@name, @id]
+    name, logo) = ($1, $2) WHERE id = $3"
+    values = [@name, @logo, @id]
     SqlRunner.run(sql, values)
   end
 

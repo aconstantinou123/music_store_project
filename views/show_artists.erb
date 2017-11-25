@@ -1,5 +1,7 @@
 <h2 style="color:white;"><%= @artist.name %></h2>
 
+<img src= "<%=@artist.logo%>" class="band_logo" alt="" />
+
 <div class="button_layout">
   <form action="/artists/<%= @artist.id %>/edit" method="get">
     <button class = "button" type="submit" formaction="/artists/<%= @artist.id %>/edit">Edit Artist Information</button>
@@ -17,7 +19,9 @@
       <th>Title </th>
       <th>Quantity </th>
       <th>Stock Level</th>
+      <th>Edit Album</th>
       <th>Delete Album</th>
+
     </tr>
       <% @artist_albums = @artist.albums() %>
       <% @artist_albums.each do |album| %>
@@ -25,6 +29,8 @@
       <td><%= album.title %></td>
       <td><%= album.quantity %></td>
       <td><%= album.stock_level %></td>
+      <td><form action="/albums/<%= album.id %>/edit" method="get">
+        <button class = "delete_button" type="submit" formaction="/albums/<%= album.id %>/edit">Edit Album Information</button></td>
       <td><form method="post" action="<%= album.id %>">
       <input type="hidden" name="_method" value="delete">
       <button class="delete_button">Delete Album</button>
@@ -38,5 +44,9 @@
   </form>
 
   <form action="/artists" method="get">
-    <button class = "button" type="submit" formaction="/artists">Back</button>
+    <button class = "button" type="submit" formaction="/artists">Back to Artists</button>
+  </form>
+
+  <form action="/albums" method="get">
+    <button class = "button" type="submit" formaction="/artists">Back to Albums</button>
   </form>

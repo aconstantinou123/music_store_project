@@ -38,6 +38,7 @@ put '/albums/:id' do
 end
 
 get '/artists/new' do
+  @artists = Artist.list_all()
   erb(:new)
 end
 

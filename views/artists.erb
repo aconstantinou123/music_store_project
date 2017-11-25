@@ -1,6 +1,7 @@
 <img src="http://cvltnationbizarre.com/images/logos/14/BIZlogo_300_7679-gq.jpg" class="shop_logo" alt="" />
 
 <h2 style="color:white;">Artists: </h2>
+  <h3 style="color:white">Click on the artist name to view album information</h3>
 
 <form action="/albums" method="get">
   <button class = "button" type="submit" formaction="/albums">View All Albums</button>
@@ -14,13 +15,11 @@
       <tr>
         <th>Name </th>
         <th>Total Stock </th>
-        <th>Information</th>
       </tr>
         <% @artists.each do |artist| %>
       <tr>
-        <td><%= artist.name %></td>
+        <td><a href="/artists/<%= artist.id %> "><%= artist.name %></a></td>
         <td><%= Album.albums_per_artist(artist.id) %></td>
-        <td><a href="/artists/<%= artist.id %> ">View Info</a></td>
       </tr>
         <% end %>
         <tr>
