@@ -16,6 +16,17 @@ get '/albums' do
   erb(:albums)
 end
 
+get '/artists/:id/albums/new' do
+  @artist = Artist.find(params[:id])
+  erb(:new_album)
+end
+
+post '/albums' do
+  @album = Album.new(params)
+  @album.save()
+  redirect to '/albums'
+end
+
 get '/artists/new' do
   erb(:new)
 end

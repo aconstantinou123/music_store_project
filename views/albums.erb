@@ -8,17 +8,19 @@
   <tr>
     <th>Title </th>
     <th>Artist </th>
+    <th>Stock Level</th>
     <th>Stock</th>
   </tr>
   <% @albums.each do |album| %>
   <tr>
     <td><%= album.title %></td>
     <td><%= album.artist.name %></td>
+    <td><%= album.stock_level %></td>
     <td><%= album.quantity %></td>
   </tr>
   <% end %>
   <tr>
-    <td colspan="2" style="color:white;">Total Stock</td>
-    <td><%= Album.total_stock %></td> 
+    <td colspan="3" style="color:white;">Total Stock</td>
+    <td><%= Album.total_stock %></td>
   </tr>
 </table>

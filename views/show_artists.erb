@@ -25,6 +25,10 @@
       <% end %>
   </table>
 
+  <form action="/artists/<%= @artist.id %>/albums/new" method="get">
+    <button class = "button" type="submit" formaction="/artists/<%= @artist.id %>/albums/new">Add New Album</button>
+  </form>
+
   <form action="/artists" method="get">
     <button class = "button" type="submit" formaction="/artists">Back</button>
   </form>
