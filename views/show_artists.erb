@@ -17,6 +17,7 @@
       <th>Title </th>
       <th>Quantity </th>
       <th>Stock Level</th>
+      <th>Delete Album</th>
     </tr>
       <% @artist_albums = @artist.albums() %>
       <% @artist_albums.each do |album| %>
@@ -24,6 +25,10 @@
       <td><%= album.title %></td>
       <td><%= album.quantity %></td>
       <td><%= album.stock_level %></td>
+      <td><form method="post" action="<%= album.id %>">
+      <input type="hidden" name="_method" value="delete">
+      <button class="delete_button">Delete Album</button>
+    </form></td>
     </tr>
       <% end %>
   </table>

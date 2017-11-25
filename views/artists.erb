@@ -1,3 +1,5 @@
+<img src="http://cvltnationbizarre.com/images/logos/14/BIZlogo_300_7679-gq.jpg" class="shop_logo" alt="" />
+
 <h2 style="color:white;">Artists: </h2>
 
 <form action="/albums" method="get">
@@ -21,4 +23,8 @@
         <td><a href="/artists/<%= artist.id %> ">View Info</a></td>
       </tr>
         <% end %>
+        <tr>
+          <td style="color:white;">Total Stock</td>
+          <td><%= Album.total_stock %></td>
+        </tr>
   </table>

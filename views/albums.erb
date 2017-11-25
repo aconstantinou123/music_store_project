@@ -1,3 +1,5 @@
+<img src="http://cvltnationbizarre.com/images/logos/14/BIZlogo_300_7679-gq.jpg" class="shop_logo" alt="" />
+
 <h2 style="color:white;">Albums: </h2>
 
 <form action="/artists" method="get">
@@ -10,7 +12,7 @@
     <th>Artist </th>
     <th>Stock Level</th>
     <th>Stock</th>
-    <th>Delete</th>
+    <th>Delete Album</th>
   </tr>
   <% @albums.each do |album| %>
   <tr>
@@ -20,8 +22,8 @@
     <td><%= album.quantity %></td>
     <td><form method="post" action="<%= album.id %>">
     <input type="hidden" name="_method" value="delete">
-    <button class="button">Delete Album</button>
-  </form><td>
+    <button class="delete_button">Delete Album</button>
+  </form></td>
   </tr>
   <% end %>
   <tr>
