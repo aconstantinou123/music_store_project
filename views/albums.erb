@@ -12,6 +12,7 @@
     <th>Artist </th>
     <th>Stock Level</th>
     <th>Stock</th>
+    <th>Edit Album</th>
     <th>Delete Album</th>
   </tr>
   <% @albums.each do |album| %>
@@ -20,6 +21,9 @@
     <td><%= album.artist.name %></td>
     <td><%= album.stock_level %></td>
     <td><%= album.quantity %></td>
+    <td><form action="/albums/<%= album.id %>/edit" method="get">
+      <button class = "delete_button" type="submit" formaction="/albums/<%= album.id %>/edit">Edit Album Information</button>
+    </form></td>
     <td><form method="post" action="<%= album.id %>">
     <input type="hidden" name="_method" value="delete">
     <button class="delete_button">Delete Album</button>

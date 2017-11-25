@@ -1,0 +1,48 @@
+<form method="post" action="/albums/<%= @album.id %>">
+  <input type="hidden" name="_method" value="put">
+
+<h2 style="color:white">Please input the details to create a new <%= @album.artist.name %> album</h2>
+
+  <div class="field-group">
+    <label for="Artist-field" class="label"></label>
+    <div class="field">
+      <input
+        type="hidden"
+        name="artist_id"
+        id="artist-field"
+        value="<%= @album.artist_id %>"
+        required
+      />
+   </div>
+  </div>
+
+  <div class="field-group">
+    <label for="title-field" class="label">Album Title:</label>
+    <div class="field">
+      <input
+        type="text"
+        name="title"
+        id="title-field"
+        placeholder="Album Title"
+        value="<%= @album.title %>"
+        required
+      />
+   </div>
+  </div>
+
+  <div class = "field-group">
+    <label for="quantity-selection" class="label">Quantity:</label>
+    <div class ="field">
+      <select name="quantity" id="quantity-selection">
+        <% [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
+          12, 13, 14, 15, 16, 17, 18, 19, 20].each do |number| %>
+            <option
+            <%= "selected" if @album.quantity == number %>>
+            <%= number %></option>
+          <% end %>
+      </select>
+    </div>
+  </div>
+
+  <button class="big-button button">Add New Album</button>
+</form>
