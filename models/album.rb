@@ -117,5 +117,10 @@ class Album
     end
   end
 
+  def mark_up
+    result = @buy_price / @sell_price
+    return "#{(result * 100).to_i}%"
+  end
+
 
 end
