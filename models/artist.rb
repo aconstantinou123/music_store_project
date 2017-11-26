@@ -31,20 +31,22 @@ class Artist
   end
 
   def check_name
+    result = false
     sql = "SELECT artists.name FROM artists
           ORDER BY artists.name ASC"
     artists = SqlRunner.run(sql)
     artist_name = artists.map{|artist| artist['name']}
     artist_name.each do |artist|
-          if artist == @name
-            return true
-          end
+        if artist == @name
+          result = true
+        end
       end
+      return result
   end
 
   def save()
       if check_name == true
-        return "Artist already in the database"
+        return
       else
       sql = 'INSERT INTO artists (
       name, logo
@@ -52,7 +54,6 @@ class Artist
       RETURNING *'
       values = [@name, @logo]
       @id = SqlRunner.run(sql, values)[0]['id'].to_i
-      return "Save successful"
     end
   end
 

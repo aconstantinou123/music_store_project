@@ -44,6 +44,7 @@ end
 
 post '/artists/message' do
   @artist = Artist.new(params)
+  @result = @artist.check_name
   @artist.save()
   erb(:message)
 end
