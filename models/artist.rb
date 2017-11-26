@@ -65,6 +65,11 @@ class Artist
     return albums.map{|album| Album.new(album)}
   end
 
-
+  def check_name
+    sql = "SELECT artists.name FROM artists
+          ORDER BY artists.name ASC"
+    artists = SqlRunner.run(sql)
+    return artists.map{|artist| artist['name']}
+  end
 
 end
