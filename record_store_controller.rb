@@ -42,10 +42,10 @@ get '/artists/new' do
   erb(:new)
 end
 
-post '/artists' do
+post '/artists/message' do
   @artist = Artist.new(params)
   @artist.save()
-  redirect to '/artists'
+  erb(:message)
 end
 
 get '/artists/:id' do

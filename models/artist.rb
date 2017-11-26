@@ -30,14 +30,32 @@ class Artist
     return Artist.new(artist)
   end
 
-  def save()
-    sql = 'INSERT INTO artists (
-    name, logo
-    ) VALUES ( $1, $2 )
-    RETURNING *'
-    values = [@name, @logo]
-    @id = SqlRunner.run(sql, values)[0]['id'].to_i
+  def check_name
+    sql = "SELECT artists.name FROM artists
+          ORDER BY artists.name ASC"
+    artists = SqlRunner.run(sql)
+    artist_name = artists.map{|artist| artist['name']}
+    artist_name.each do |artist|
+          if artist == @name
+            return true
+          end
+      end
   end
+
+  def save()
+      if check_name == true
+        return "Artist already in the database"
+      else
+      sql = 'INSERT INTO artists (
+      name, logo
+      ) VALUES ( $1, $2 )
+      RETURNING *'
+      values = [@name, @logo]
+      @id = SqlRunner.run(sql, values)[0]['id'].to_i
+      return "Save successful"
+    end
+  end
+
 
   def update()
     sql = "UPDATE artists SET (
@@ -65,16 +83,5 @@ class Artist
     return albums.map{|album| Album.new(album)}
   end
 
-  def check_name
-    sql = "SELECT artists.name FROM artists
-          ORDER BY artists.name ASC"
-    artists = SqlRunner.run(sql)
-    artist_name = artists.map{|artist| artist['name']}
-    artist_name.each do |artist|
-          if artist == @name
-            return true
-          end
-      end
-  end
 
 end
