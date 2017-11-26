@@ -1,1 +1,9 @@
-<h2 style="color:white;"><%= @result %><h2>
+<% if @result == true %>
+  <h2 style="color:white;">Artist already in database<h2>
+<% else %>
+  <h2 style="color:white;">Save Successful<h2>
+<% end %>
+
+<form action="/artists" method="get">
+  <button class = "button" type="submit" formaction="/artists">Back to Artists</button>
+</form>

@@ -47,7 +47,24 @@ class Album
     return total
   end
 
+  def check_name
+    result = false
+    sql = "SELECT albums.title FROM albums
+          ORDER BY albums.title ASC"
+    albums = SqlRunner.run(sql)
+    album_name = albums.map{|album| album['title']}
+    album_name.each do |album|
+        if album == @title
+          result = true
+        end
+      end
+      return result
+  end
+
   def save()
+    if check_name == true
+      return
+    else
     sql = 'INSERT INTO albums (
     title,
     artist_id,
@@ -56,6 +73,7 @@ class Album
     RETURNING *'
     values = [@title, @artist_id, @quantity]
     @id = SqlRunner.run(sql, values)[0]['id'].to_i
+    end
   end
 
   def update()

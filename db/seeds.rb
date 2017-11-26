@@ -37,6 +37,9 @@ album9 = Album.new('title' => 'Hvis Lyset Tar Oss', 'artist_id' => artist5.id, '
 album9.save()
 album10 = Album.new('title' => 'Filosofem', 'artist_id' => artist5.id, 'quantity' => 12)
 album10.save()
+album11 = Album.new('title' => 'The Work Which Transforms God', 'artist_id' => artist5.id, 'quantity' => 12)
+album12 = Album.new('title' => 'Filosofem', 'artist_id' => artist5.id, 'quantity' => 12)
+
 
 
 
