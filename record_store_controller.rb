@@ -21,10 +21,11 @@ get '/artists/:id/albums/new' do
   erb(:new_album)
 end
 
-post '/albums' do
+post '/albums/album_message' do
   @album = Album.new(params)
+  @result = @album.check_name
   @album.save()
-  redirect to '/albums'
+  erb (:album_message)
 end
 
 get '/albums/:id/edit' do
