@@ -8,6 +8,8 @@ class Album
     @id = options['id'].to_i
     @title = options['title']
     @artist_id = options['artist_id'].to_i
+    @buy_price = options['buy_price'].to_f
+    @sell_price = options['sell_price'].to_f
     @quantity = options['quantity'].to_i
   end
 
@@ -68,18 +70,20 @@ class Album
     sql = 'INSERT INTO albums (
     title,
     artist_id,
+    buy_price,
+    sell_price,
     quantity
-    ) VALUES ( $1, $2, $3 )
+    ) VALUES ( $1, $2, $3, $4, $5 )
     RETURNING *'
-    values = [@title, @artist_id, @quantity]
+    values = [@title, @artist_id, @buy_price, @sell_price, @quantity]
     @id = SqlRunner.run(sql, values)[0]['id'].to_i
     end
   end
 
   def update()
     sql = "UPDATE albums SET (
-    title, artist_id, quantity) = ($1, $2, $3) WHERE id = $4"
-    values = [@title, @artist_id, @quantity, @id]
+    title, artist_id, buy_price, sell_price, quantity) = ($1, $2, $3, $4, $5) WHERE id = $6"
+    values = [@title, @artist_id, @buy_price, @sell_price, @quantity, @id]
     SqlRunner.run(sql, values)
   end
 
