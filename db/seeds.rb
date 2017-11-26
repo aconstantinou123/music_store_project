@@ -14,7 +14,7 @@ artist4 = Artist.new('name' => 'Enslaved', 'logo' =>'https://i.pinimg.com/origin
 artist4.save()
 artist5 = Artist.new('name' => 'Burzum', 'logo' =>'http://4.bp.blogspot.com/-z1SjE_V6kN0/UqpmQwalXUI/AAAAAAAABAM/HgG5T_BgXOo/s1600/Burzum+Logo.jpg')
 artist5.save()
-
+artist6 = Artist.new('name' => 'Leviathan', 'logo' =>'https://www.metal-archives.com/images/9/5/6/2/9562_logo.gif')
 Artist.list_all()
 
 album1 = Album.new('title' => 'In the Nightside Eclipse', 'artist_id' => artist1.id, 'quantity' => 7)

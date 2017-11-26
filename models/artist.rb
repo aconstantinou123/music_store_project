@@ -69,7 +69,12 @@ class Artist
     sql = "SELECT artists.name FROM artists
           ORDER BY artists.name ASC"
     artists = SqlRunner.run(sql)
-    return artists.map{|artist| artist['name']}
+    artist_name = artists.map{|artist| artist['name']}
+    artist_name.each do |artist|
+          if artist == @name
+            return true
+          end
+      end
   end
 
 end
