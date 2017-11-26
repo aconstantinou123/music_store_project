@@ -30,8 +30,9 @@
       <td><%= album.quantity %></td>
       <td><%= album.stock_level %></td>
       <td><form action="/albums/<%= album.id %>/edit" method="get">
-        <button class = "delete_button" type="submit" formaction="/albums/<%= album.id %>/edit">Edit Album Information</button></td>
-      <td><form method="post" action="<%= album.id %>">
+        <button class = "delete_button" type="submit" formaction="/albums/<%= album.id %>/edit">Edit Album Information</button>
+      </form></td>
+      <td><form method="post" action="/<%= album.id %>">
       <input type="hidden" name="_method" value="delete">
       <button class="delete_button">Delete Album</button>
     </form></td>
@@ -48,5 +49,5 @@
   </form>
 
   <form action="/albums" method="get">
-    <button class = "button" type="submit" formaction="/artists">Back to Albums</button>
+    <button class = "button" type="submit" formaction="/albums">Back to Albums</button>
   </form>

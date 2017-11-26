@@ -64,13 +64,19 @@ put '/artists/:id' do
   redirect to '/artists'
 end
 
+delete '/:album_id' do
+  artist = Album.find(params[:album_id])
+  artist.delete()
+  redirect to '/albums'
+end
+
 delete '/artists/:id' do
   artist = Artist.find(params[:id])
   artist.delete()
   redirect to '/artists'
 end
 
-delete '/:album_id' do
+delete 'albums/:album_id' do
   artist = Album.find(params[:album_id])
   artist.delete()
   redirect to '/albums'

@@ -3,22 +3,22 @@
 <h2 style="color:white;">Artists: </h2>
   <h3 style="color:white">Click on the artist name to view album information</h3>
 
-<form action="/albums" method="get">
-  <button class = "button" type="submit" formaction="/albums">View All Albums</button>
-</form>
+  <form action="/albums" method="get">
+    <button class = "button" type="submit" formaction="/albums">View All Albums</button>
+  </form>
 
-<form action="/artists/new" method="get">
-  <button class = "button" type="submit" formaction="/artists/new">Add a New Artist</button>
-</form>
+  <form action="/artists/new" method="get">
+    <button class = "button" type="submit" formaction="/artists/new">Add a New Artist</button>
+  </form>
 
     <table style="width:100%">
       <tr>
-        <th>Name </th>
+        <th> Band Name</th>
         <th>Total Stock </th>
       </tr>
         <% @artists.each do |artist| %>
       <tr>
-        <td><a href="/artists/<%= artist.id %> "><%= artist.name %></a></td>
+        <td><img src= "<%=artist.logo%>" class="band_logo_small" alt="" /><a href="/artists/<%= artist.id %> "><%= artist.name %></a></td>
         <td><%= Album.albums_per_artist(artist.id) %></td>
       </tr>
         <% end %>

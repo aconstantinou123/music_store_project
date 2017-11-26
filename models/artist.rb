@@ -54,7 +54,7 @@ class Artist
   end
 
   def albums
-    sql = "SELECT *
+    sql = "SELECT albums.*
           FROM albums
           INNER JOIN artists
           ON albums.artist_id = artists.id
