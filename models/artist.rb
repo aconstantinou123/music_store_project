@@ -84,25 +84,13 @@ class Artist
     return albums.map{|album| Album.new(album)}
   end
 
-  # def self.search_artist(search)
-  #   search = search.capitalize!
-  #   sql = "SELECT artists.name
-  #           FROM artists
-  #           WHERE (name LIKE $1 OR name LIKE lower($1))"
-  #   values = ["%#{search}%"]
-  #   artists = SqlRunner.run(sql, values)
-  #   puts values
-  #   return artists.map{|artist| artist['name']}
-  # end
-
   def self.search_artist(search)
-    sql = "SELECT artists.name
+    sql = "SELECT *
             FROM artists
             WHERE (name LIKE $1 OR name LIKE lower($1))"
     values = ["%#{search}%"]
     artists = SqlRunner.run(sql, values)
-    puts values
-    return artists.map{|artist| artist['name']}
+    return artists.map{|artist| Artist.new(artist)}
   end
 
 end

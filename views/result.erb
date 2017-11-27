@@ -1,1 +1,15 @@
-<h2 style="color:white;"><%= @result %></h2>
+<h2 class="result_header" style="color:white;">Results</h2>
+
+<% @result.each do |result| %>
+<h2 style="color:white;"><a href="/artists/<%= result.id %> "><%= result.name %></h2>
+<% end %>
+
+<% @result = nil %>
+
+<form action="/artists" method="get">
+  <button class = "button" type="submit" formaction="/artists">Back to Artists</button>
+</form>
+
+<form action="/albums" method="get">
+  <button class = "button" type="submit" formaction="/albums">Back to Albums</button>
+</form>
