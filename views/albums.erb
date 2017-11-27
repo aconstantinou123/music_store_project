@@ -7,14 +7,19 @@
   <button class = "button" type="submit" formaction="/artists">View All Artists</button>
 </form>
 
+<form action="/albums" method="post">
+  <input class="input" type="text" name="percent" placeholder="Enter % to reduce" required>
+  <button class="button" type="submit">Apply Sale prices</button>
+</form>
+
 <table class="info_table" style="width:100%">
   <tr>
     <th>Title </th>
     <th>Artist </th>
     <th>Stock Level</th>
     <th>Stock</th>
-    <th>Buy Price</th>
-    <th>Sell Price</th>
+    <th>Buy Price (£)</th>
+    <th>Sell Price (£) - prices showing at <%= @sale.percent %>%</th>
     <th>Edit Album</th>
     <th>Delete Album</th>
   </tr>
@@ -25,7 +30,7 @@
     <td><%= album.stock_level %></td>
     <td><%= album.quantity %></td>
     <td><%= album.buy_price %></td>
-    <td><%= ((album.sell_price + album.buy_price) * @sale.percent).round(2) %></td>
+    <td><%= (((album.sell_price + album.buy_price) * @sale.percent) / 100).round(2) %></td>
     <td><form action="/albums/<%= album.id %>/edit" method="get">
       <button class = "delete_button" type="submit" formaction="/albums/<%= album.id %>/edit">Edit Album Information</button>
     </form></td>
@@ -33,8 +38,10 @@
     <input type="hidden" name="_method" value="delete">
     <button class="delete_button">Delete Album</button>
   </form></td>
-  </tr>
+</tr>
+  <% album.update() %>
   <% end %>
+
   <tr>
     <td colspan="3" style="color:white;">Total Stock</td>
     <td><%= Album.total_stock %></td>

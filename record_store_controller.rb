@@ -19,7 +19,14 @@ get '/result' do
 end
 
 get '/albums' do
-  @sale = Sale.new('percent' => 1.00)
+  @sale = Sale.new('percent' => 100.00)
+  @artists = Artist.list_all()
+  @albums = Album.list_all()
+    erb(:albums)
+end
+
+post '/albums' do
+  @sale = Sale.new(params)
   @artists = Artist.list_all()
   @albums = Album.list_all()
     erb(:albums)
