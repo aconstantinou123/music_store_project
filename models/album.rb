@@ -5,7 +5,7 @@ require_relative('album.rb')
 
 class Album
 
-  attr_reader :id, :title, :artist_id, :sale_id, :buy_price, :sell_price, :quantity
+  attr_accessor :id, :title, :artist_id, :sale_id, :buy_price, :sell_price, :quantity
 
   def initialize(options)
     @id = options['id'].to_i
@@ -93,26 +93,24 @@ class Album
   end
 
   def adjust_sell_price(sale)
-    @sell_price = @buy_price + 5
-    @sell_price = ((@sell_price * sale.percent) / 100).round(2)
+    @sell_price = @buy_price + 10
+    @sell_price = ((@sell_price * sale.percent)/ 100).round(2)
     update()
     return @sell_price
   end
 
-  # def adjust_sell_price
-  #   sql = "SELECT sales.percent
-  #         FROM sales
-  #         INNER JOIN albums
-  #         ON albums.sale_id = sales.id
-  #         WHERE albums.sale_id = $1
-  #         LIMIT 1 OFFSET 0"
-  #   values = [@artist_id]
-  #   percent = SqlRunner.run(sql, values).first['percent'].to_f
-  #   @sell_price = 3 + (@buy_price * percent)
-  #   @sell_price.round(2)
-  #   update()
-  #   return @sell_price
-  # end
+  def adjust_price
+    sql = "SELECT sales.percent
+          FROM sales
+          INNER JOIN albums
+          ON albums.sale_id = sales.id
+          WHERE albums.id = $1"
+    values = [@id]
+    percent = SqlRunner.run(sql, values).first['percent'].to_f
+    @sell_price = (((10 + @buy_price) * percent) / 100).round(2)
+    update()
+    return @sell_price
+  end
 
   def delete()
     sql = "DELETE FROM albums
@@ -144,8 +142,8 @@ class Album
     end
   end
 
-  def mark_up
-    result = buy_price / @sell_price
+  def mark_up(sale)
+    result = @buy_price / adjust_sell_price(sale)
     return "#{(result * 100).to_i}%"
   end
 

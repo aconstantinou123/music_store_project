@@ -19,7 +19,6 @@ get '/result' do
 end
 
 get '/albums' do
-  @sale = Sale.new('percent' => 100.00)
   @artists = Artist.list_all()
   @albums = Album.list_all()
     erb(:albums)
@@ -27,8 +26,13 @@ end
 
 post '/albums' do
   @sale = Sale.new(params)
+  @sale.save()
   @artists = Artist.list_all()
   @albums = Album.list_all()
+  @albums.map do |album|
+    puts album.sale_id = @sale.id
+    album.update()
+  end
     erb(:albums)
 end
 
