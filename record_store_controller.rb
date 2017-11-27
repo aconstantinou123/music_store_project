@@ -10,6 +10,11 @@ get '/artists' do
   erb(:artists)
 end
 
+get '/artists/result' do
+  @result = Artist.search_artist(params['search'])
+  erb(:result)
+end
+
 get '/albums' do
   @artists = Artist.list_all()
   @albums = Album.list_all()
