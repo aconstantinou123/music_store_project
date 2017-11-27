@@ -92,20 +92,27 @@ class Album
     SqlRunner.run(sql, values)
   end
 
-  def adjust_sell_price
-    sql = "SELECT sales.percent
-          FROM sales
-          INNER JOIN albums
-          ON albums.sale_id = sales.id
-          WHERE albums.sale_id = $1
-          LIMIT 1 OFFSET 0"
-    values = [@artist_id]
-    percent = SqlRunner.run(sql, values).first['percent'].to_f
-    @sell_price = 3 + (@buy_price * percent)
-    @sell_price.round(2)
+  def adjust_sell_price(sale)
+    @sell_price = @buy_price + 5
+    @sell_price = ((@sell_price * sale.percent) / 100).round(2)
     update()
     return @sell_price
   end
+
+  # def adjust_sell_price
+  #   sql = "SELECT sales.percent
+  #         FROM sales
+  #         INNER JOIN albums
+  #         ON albums.sale_id = sales.id
+  #         WHERE albums.sale_id = $1
+  #         LIMIT 1 OFFSET 0"
+  #   values = [@artist_id]
+  #   percent = SqlRunner.run(sql, values).first['percent'].to_f
+  #   @sell_price = 3 + (@buy_price * percent)
+  #   @sell_price.round(2)
+  #   update()
+  #   return @sell_price
+  # end
 
   def delete()
     sql = "DELETE FROM albums

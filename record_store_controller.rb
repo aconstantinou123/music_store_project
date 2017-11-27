@@ -67,6 +67,7 @@ post '/artists/message' do
 end
 
 get '/artists/:id' do
+  @sale = Sale.new('percent' => 100.00)
   @artist = Artist.find(params[:id])
   @albums = Album.list_all
   erb(:show_artists)

@@ -30,7 +30,7 @@
     <td><%= album.stock_level %></td>
     <td><%= album.quantity %></td>
     <td><%= album.buy_price %></td>
-    <td><%= (((album.sell_price + album.buy_price) * @sale.percent) / 100).round(2) %></td>
+    <td><%= album.adjust_sell_price(@sale) %></td>
     <td><form action="/albums/<%= album.id %>/edit" method="get">
       <button class = "delete_button" type="submit" formaction="/albums/<%= album.id %>/edit">Edit Album Information</button>
     </form></td>
@@ -39,7 +39,6 @@
     <button class="delete_button">Delete Album</button>
   </form></td>
 </tr>
-  <% album.update() %>
   <% end %>
 
   <tr>
