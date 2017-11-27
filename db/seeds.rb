@@ -1,6 +1,7 @@
 require('pry-byebug')
 require_relative('../models/artist.rb')
 require_relative('../models/album.rb')
+require_relative('../models/sale.rb')
 
 Artist.delete_all()
 
@@ -16,6 +17,18 @@ artist5 = Artist.new('name' => 'Burzum', 'logo' =>'http://4.bp.blogspot.com/-z1S
 artist5.save()
 artist6 = Artist.new('name' => 'Emperor', 'logo' =>'https://www.metal-archives.com/images/3/5/4/0/3540303310_logo.gif?2931')
 Artist.list_all()
+
+Sale.delete_all()
+sale1 = Sale.new('percent' => 0.9)
+sale1.save()
+sale2 = Sale.new('percent' => 0.75)
+sale2.save()
+sale1 = Sale.new('percent' => 0.50)
+sale1.save()
+sale1 = Sale.new('percent' => 0.25)
+sale1.save()
+
+Album.delete_all()
 
 album1 = Album.new('title' => 'In the Nightside Eclipse', 'artist_id' => artist1.id, 'buy_price' => 7.49, 'sell_price' => 12.99, 'quantity' => 7)
 album1.save()
