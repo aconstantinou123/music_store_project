@@ -1,4 +1,5 @@
 require ('pg')
+require('pry')
 
 class SqlRunner
 
