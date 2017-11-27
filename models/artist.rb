@@ -85,9 +85,10 @@ class Artist
   end
 
   def self.search_artist(search)
+    search = search.capitalize!
     sql = "SELECT artists.name
             FROM artists
-            WHERE name LIKE $1"
+            WHERE (name LIKE $1 OR name LIKE lower($1))"
     values = ["%#{search}%"]
     artists = SqlRunner.run(sql, values)
     puts values
