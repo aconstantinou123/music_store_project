@@ -13,9 +13,8 @@
     <th>Artist </th>
     <th>Stock Level</th>
     <th>Stock</th>
-    <th>Buy Price (£)</th>
+    <th> Sale ID</th>
     <th>Sell Price (£)</th>
-    <th> Mark up</th>
     <th>Edit Album</th>
     <th>Delete Album</th>
   </tr>
@@ -25,9 +24,8 @@
     <td><%= album.artist.name %></td>
     <td><%= album.stock_level %></td>
     <td><%= album.quantity %></td>
-    <td><%= album.buy_price %></td>
+    <td><%= album.id %></td>
     <td><%= album.sell_price %></td>
-    <td><%= album.mark_up %></td>
     <td><form action="/albums/<%= album.id %>/edit" method="get">
       <button class = "delete_button" type="submit" formaction="/albums/<%= album.id %>/edit">Edit Album Information</button>
     </form></td>

@@ -1,4 +1,5 @@
 require_relative('../db/sql_runner.rb')
+require_relative('album.rb')
 
 
 class Album
@@ -88,8 +89,17 @@ class Album
     SqlRunner.run(sql, values)
   end
 
-  def buy_price(sale)
-    update()
+  def buy_price
+    sql = "SELECT sales.percent
+          FROM sales
+          INNER JOIN albums
+          ON albums.sale_id = sales.id
+          WHERE albums.sale_id = $1
+          LIMIT 1 OFFSET 0"
+    values = [@artist_id]
+    percent = SqlRunner.run(sql, values)[0]['percent'].to_f
+    buy_price = 3 + (@sell_price * percent)
+    return buy_price.round(2)
   end
 
   def delete()

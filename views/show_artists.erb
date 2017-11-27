@@ -19,7 +19,7 @@
       <th>Title </th>
       <th>Quantity </th>
       <th>Stock Level</th>
-      <th>Buy Price (£)</th>
+      <th>Sale ID</th>
       <th>Sell Price (£)</th>
       <th> Mark up</th>
       <th>Edit Album</th>
@@ -32,7 +32,7 @@
       <td><%= album.title %></td>
       <td><%= album.quantity %></td>
       <td><%= album.stock_level %></td>
-      <td><%= album.buy_price %></td>
+      <td><%= album.sale_id %></td>
       <td><%= album.sell_price %></td>
       <td><%= album.mark_up %></td>
       <td><form action="/albums/<%= album.id %>/edit" method="get">

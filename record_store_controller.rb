@@ -3,6 +3,7 @@ require('sinatra/contrib/all')
 require('pry-byebug')
 require_relative('models/album.rb')
 require_relative('models/artist.rb')
+require_relative('models/sale.rb')
 
 get '/artists' do
   @artists = Artist.list_all()
