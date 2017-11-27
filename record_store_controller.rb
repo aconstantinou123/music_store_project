@@ -21,7 +21,7 @@ end
 get '/albums' do
   @artists = Artist.list_all()
   @albums = Album.list_all()
-  erb(:albums)
+    erb(:albums)
 end
 
 get '/artists/:id/albums/new' do

@@ -1,16 +1,18 @@
+require('pry')
 require_relative('../db/sql_runner.rb')
 require_relative('album.rb')
 
 
 class Album
 
-  attr_reader :id, :title, :artist_id, :sale_id, :sell_price, :quantity
+  attr_reader :id, :title, :artist_id, :sale_id, :buy_price, :sell_price, :quantity
 
   def initialize(options)
     @id = options['id'].to_i
     @title = options['title']
     @artist_id = options['artist_id'].to_i
     @sale_id = options['sale_id'].to_i
+    @buy_price = options['buy_price'].to_f
     @sell_price = options['sell_price'].to_f
     @quantity = options['quantity'].to_i
   end
@@ -73,23 +75,24 @@ class Album
     title,
     artist_id,
     sale_id,
+    buy_price,
     sell_price,
     quantity
-    ) VALUES ( $1, $2, $3, $4, $5 )
+    ) VALUES ( $1, $2, $3, $4, $5, $6 )
     RETURNING *'
-    values = [@title, @artist_id, @sale_id, @sell_price, @quantity]
+    values = [@title, @artist_id, @sale_id, @buy_price, @sell_price, @quantity]
     @id = SqlRunner.run(sql, values)[0]['id'].to_i
     end
   end
 
   def update()
     sql = "UPDATE albums SET (
-    title, artist_id, sale_id, sell_price, quantity) = ($1, $2, $3, $4, $5) WHERE id = $6"
-    values = [@title, @artist_id, @sale_id, @sell_price, @quantity, @id]
+    title, artist_id, sale_id, buy_price, sell_price, quantity) = ($1, $2, $3, $4, $5, $6) WHERE id = $7"
+    values = [@title, @artist_id, @sale_id, @buy_price, @sell_price, @quantity, @id]
     SqlRunner.run(sql, values)
   end
 
-  def buy_price
+  def sell_price
     sql = "SELECT sales.percent
           FROM sales
           INNER JOIN albums
@@ -97,9 +100,11 @@ class Album
           WHERE albums.sale_id = $1
           LIMIT 1 OFFSET 0"
     values = [@artist_id]
-    percent = SqlRunner.run(sql, values)[0]['percent'].to_f
-    buy_price = 3 + (@sell_price * percent)
-    return buy_price.round(2)
+    percent = SqlRunner.run(sql, values).first['percent'].to_f
+    @sell_price = 3 + (@buy_price * percent)
+    @sell_price.round(2)
+    update()
+    return @sell_price.to_s
   end
 
   def delete()
