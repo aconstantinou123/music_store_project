@@ -1,5 +1,6 @@
 require_relative('../db/sql_runner.rb')
 
+
 class Album
 
   attr_reader :id, :title, :artist_id, :buy_price, :sell_price, :quantity
@@ -85,6 +86,11 @@ class Album
     title, artist_id, buy_price, sell_price, quantity) = ($1, $2, $3, $4, $5) WHERE id = $6"
     values = [@title, @artist_id, @buy_price, @sell_price, @quantity, @id]
     SqlRunner.run(sql, values)
+  end
+
+  def sale_price(sale)
+    @sell_price = (@sell_price * sale.percent).round(2)
+    update()
   end
 
   def delete()

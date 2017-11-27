@@ -19,14 +19,16 @@ artist6 = Artist.new('name' => 'Emperor', 'logo' =>'https://www.metal-archives.c
 Artist.list_all()
 
 Sale.delete_all()
+sale0= Sale.new('percent' => 1.0)
+sale0.save()
 sale1 = Sale.new('percent' => 0.9)
 sale1.save()
 sale2 = Sale.new('percent' => 0.75)
 sale2.save()
-sale1 = Sale.new('percent' => 0.50)
-sale1.save()
-sale1 = Sale.new('percent' => 0.25)
-sale1.save()
+sale3 = Sale.new('percent' => 0.50)
+sale3.save()
+sale4 = Sale.new('percent' => 0.25)
+sale4.save()
 
 Album.delete_all()
 
@@ -54,7 +56,7 @@ album11 = Album.new('title' => 'The Work Which Transforms God', 'artist_id' => a
 album12 = Album.new('title' => 'Filosofem', 'artist_id' => artist5.id, 'buy_price' => 7.49, 'sell_price' => 12.99, 'quantity' => 12)
 
 
-
+album1.sale_price(sale1)
 
 binding.pry
 nil
