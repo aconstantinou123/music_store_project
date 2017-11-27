@@ -10,9 +10,10 @@ get '/artists' do
   erb(:artists)
 end
 
-get '/artists/result' do
+get '/result' do
   @result = params['search'].capitalize
-  @result = Artist.search_artist(@result)
+  @result_artist = Artist.search_artist(@result)
+  @result_album = Album.search_album(@result)
   erb(:result)
 end
 

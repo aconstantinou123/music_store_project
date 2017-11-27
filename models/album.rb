@@ -122,5 +122,14 @@ class Album
     return "#{(result * 100).to_i}%"
   end
 
+  def self.search_album(search)
+    sql = "SELECT *
+            FROM albums
+            WHERE (title LIKE $1 OR title LIKE lower($1))"
+    values = ["%#{search}%"]
+    albums = SqlRunner.run(sql, values)
+    return albums.map{|album| Album.new(album)}
+  end
+
 
 end
