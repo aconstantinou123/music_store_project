@@ -3,13 +3,13 @@ require_relative('../db/sql_runner.rb')
 
 class Album
 
-  attr_reader :id, :title, :artist_id, :buy_price, :sell_price, :quantity
+  attr_reader :id, :title, :artist_id, :sale_id, :sell_price, :quantity
 
   def initialize(options)
     @id = options['id'].to_i
     @title = options['title']
     @artist_id = options['artist_id'].to_i
-    @buy_price = options['buy_price'].to_f
+    @sale_id = options['sale_id'].to_i
     @sell_price = options['sell_price'].to_f
     @quantity = options['quantity'].to_i
   end
@@ -71,25 +71,24 @@ class Album
     sql = 'INSERT INTO albums (
     title,
     artist_id,
-    buy_price,
+    sale_id,
     sell_price,
     quantity
     ) VALUES ( $1, $2, $3, $4, $5 )
     RETURNING *'
-    values = [@title, @artist_id, @buy_price, @sell_price, @quantity]
+    values = [@title, @artist_id, @sale_id, @sell_price, @quantity]
     @id = SqlRunner.run(sql, values)[0]['id'].to_i
     end
   end
 
   def update()
     sql = "UPDATE albums SET (
-    title, artist_id, buy_price, sell_price, quantity) = ($1, $2, $3, $4, $5) WHERE id = $6"
-    values = [@title, @artist_id, @buy_price, @sell_price, @quantity, @id]
+    title, artist_id, sale_id, sell_price, quantity) = ($1, $2, $3, $4, $5) WHERE id = $6"
+    values = [@title, @artist_id, @sale_id, @sell_price, @quantity, @id]
     SqlRunner.run(sql, values)
   end
 
-  def sale_price(sale)
-    @sell_price = (@sell_price * sale.percent).round(2)
+  def buy_price(sale)
     update()
   end
 
@@ -124,7 +123,7 @@ class Album
   end
 
   def mark_up
-    result = @buy_price / @sell_price
+    result = buy_price / @sell_price
     return "#{(result * 100).to_i}%"
   end
 
