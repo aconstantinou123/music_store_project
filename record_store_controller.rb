@@ -11,7 +11,8 @@ get '/artists' do
 end
 
 get '/artists/result' do
-  @result = Artist.search_artist(params['search'])
+  @result = params['search'].capitalize!
+  @result = Artist.search_artist(@result)
   erb(:result)
 end
 
