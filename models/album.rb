@@ -92,7 +92,7 @@ class Album
     SqlRunner.run(sql, values)
   end
 
-  def sell_price
+  def adjust_sell_price
     sql = "SELECT sales.percent
           FROM sales
           INNER JOIN albums
@@ -104,7 +104,7 @@ class Album
     @sell_price = 3 + (@buy_price * percent)
     @sell_price.round(2)
     update()
-    return @sell_price.to_s
+    return @sell_price
   end
 
   def delete()

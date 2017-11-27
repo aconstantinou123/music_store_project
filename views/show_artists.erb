@@ -32,7 +32,7 @@
       <td><%= album.quantity %></td>
       <td><%= album.stock_level %></td>
       <td><%= album.buy_price %></td>
-      <td> </td>
+      <td><%= album.sell_price %></td>
       <td><form action="/albums/<%= album.id %>/edit" method="get">
         <button class = "delete_button" type="submit" formaction="/albums/<%= album.id %>/edit">Edit Album Information</button>
       </form></td>
