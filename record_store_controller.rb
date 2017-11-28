@@ -80,10 +80,11 @@ get '/artists/:id' do
 end
 
 post '/artists/:id' do
+  @album = Album.find(params[:id])
   @sale = Sale.new(params)
   @sale.save()
   @albums = params.map{|k, v| v}
-  @albums.shift
+  @albums.shift(2)
   @albums.pop
   @results = []
   for album in @albums
@@ -93,7 +94,7 @@ post '/artists/:id' do
       result.sale_id = @sale.id
       result.update
     end
-  redirect to '/albums'
+    redirect to '/albums'
 end
 
 get '/artists/:id/edit' do
