@@ -32,9 +32,9 @@
         <% id = 1 %>
       <% @artist_albums = @artist.albums() %>
       <% @artist_albums.each do |album| %>
-      <% id = "#{album.id}" %>
+
     <tr>
-      <td><input type="checkbox" name="<%= 1 %>" value="<%=album.id%>"/></td>
+      <td><input type="checkbox" name="<%= id %>" value="<%=album.id%>"/></td>
         <% id = id.to_i + 1 %>
 </form>
       <td><%= album.title %></td>
