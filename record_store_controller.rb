@@ -15,6 +15,7 @@ get '/result' do
   @result = params['search'].capitalize
   @result_artist = Artist.search_artist(@result)
   @result_album = Album.search_album(@result)
+  @result_genre = Artist.search_genre(@result)
   erb(:result)
 end
 

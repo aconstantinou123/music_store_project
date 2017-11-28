@@ -33,6 +33,23 @@
     <% @result_album = nil %>
     <%end%>
 
+    <div class="result_header">
+      <h2 style="color:white;">Genre Results</h2>
+    </div>
+
+    <% if @result_genre.empty? %>
+    <div class="results">
+      <h2 style="font-size: 20px; color:white;">Genre Results Empty</h2>
+    </div>
+    <% else %>
+    <div class="results">
+      <% @result_genre.each do |result| %>
+      <h2 style="color:white; font-size: 20px;"><a href="/artists/<%= result.id %> "><img src= "<%=result.logo%>" class="band_logo_small" alt="" /><%= result.name %></h2>
+        <% end %>
+      </div>
+      <% @result_genre = nil %>
+      <%end%>
+
     <form action="/artists" method="get">
       <button class = "button" type="submit" formaction="/artists">Back to Artists</button>
     </form>
