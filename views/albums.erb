@@ -29,8 +29,8 @@
     <td><%= album.artist.name %></td>
     <td><%= album.stock_level %></td>
     <td><%= album.quantity %></td>
-    <td><%= album.buy_price %></td>
-      <td><%= album.adjust_price %></br></br><%= album.mark_up_percent %></td>
+    <td><%= sprintf('%.2f', album.buy_price) %></td>
+      <td><%= sprintf('%.2f',album.adjust_price) %></br></br><%= album.mark_up_percent %></td>
     <td><form action="/albums/<%= album.id %>/edit" method="get">
       <button class = "delete_button" type="submit" formaction="/albums/<%= album.id %>/edit">Edit Album Information</button>
     </form></td>

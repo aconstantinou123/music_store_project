@@ -16,17 +16,19 @@
 
     <table style="width:100%">
       <tr>
-        <th> Band Name</th>
+        <th>Band Name</th>
+        <th>Genre</th>
         <th>Total Stock </th>
       </tr>
         <% @artists.each do |artist| %>
       <tr>
         <td><img src= "<%=artist.logo%>" class="band_logo_small" alt="" /><a href="/artists/<%= artist.id %> "><%= artist.name %></a></td>
+        <td><%= artist.genre %></td>
         <td><%= Album.albums_per_artist(artist.id) %></td>
       </tr>
         <% end %>
         <tr>
-          <td style="color:white;">Total Stock</td>
+          <td colspan="2" style="color:white;">Total Stock</td>
           <td><%= Album.total_stock %></td>
         </tr>
   </table>

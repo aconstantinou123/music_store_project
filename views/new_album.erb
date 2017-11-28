@@ -16,6 +16,19 @@
   </div>
 
   <div class="field-group">
+    <label for="Artist-field" class="label"></label>
+    <div class="field">
+      <input
+        type="hidden"
+        name="sale_id"
+        id="artist-field"
+        value="<%= @artist.select_sales_id %>"
+        required
+      />
+   </div>
+  </div>
+
+  <div class="field-group">
     <label for="title-field" class="label">Album Title:</label>
     <div class="field">
       <input
@@ -42,13 +55,13 @@
   </div>
 
   <div class="field-group">
-    <label for="sell_price-field" class="label">Sell Price (£):</label>
+    <label for="mark_up-field" class="label">Mark-up Price (£):</label>
     <div class="field">
       <input
         type="text"
-        name="sell_price"
-        id="sell_price-field"
-        placeholder="Sell Price"
+        name="mark_up"
+        id="mark_up-field"
+        placeholder="Mark-up Price"
         required
       />
    </div>

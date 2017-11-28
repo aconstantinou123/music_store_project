@@ -13,7 +13,6 @@
   </form>
 </div>
 
-
   <table style="width:100%">
     <tr>
       <th>Title </th>
@@ -27,12 +26,13 @@
     </tr>
       <% @artist_albums = @artist.albums() %>
       <% @artist_albums.each do |album| %>
+      <% id = "#{album.id}" %>
     <tr>
       <td><%= album.title %></td>
       <td><%= album.quantity %></td>
       <td><%= album.stock_level %></td>
-      <td><%= album.buy_price %></td>
-      <td><%= album.adjust_price %></br></br><%= album.mark_up_percent %></td>
+      <td><%= sprintf('%.2f', album.buy_price) %></td>
+      <td><%= sprintf('%.2f', album.adjust_price) %></br></br><%= album.mark_up_percent %></td>
       <td><form action="/albums/<%= album.id %>/edit" method="get">
         <button class = "delete_button" type="submit" formaction="/albums/<%= album.id %>/edit">Edit Album Information</button>
       </form></td>
@@ -43,7 +43,6 @@
     </tr>
       <% end %>
   </table>
-
   <form action="/artists/<%= @artist.id %>/albums/new" method="get">
     <button class = "button" type="submit" formaction="/artists/<%= @artist.id %>/albums/new">Add New Album</button>
   </form>

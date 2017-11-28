@@ -2,11 +2,12 @@ require_relative('../db/sql_runner.rb')
 
 class Artist
 
-  attr_accessor :id, :name, :logo
+  attr_accessor :id, :name, :genre, :logo
 
   def initialize(options)
     @id = options['id'].to_i
     @name = options['name']
+    @genre = options['genre'].to_s
     @logo = options['logo'].to_s
   end
 
@@ -49,10 +50,10 @@ class Artist
         return
       else
       sql = 'INSERT INTO artists (
-      name, logo
-      ) VALUES ( $1, $2 )
+      name, genre, logo
+      ) VALUES ( $1, $2, $3 )
       RETURNING *'
-      values = [@name, @logo]
+      values = [@name, @genre, @logo]
       @id = SqlRunner.run(sql, values)[0]['id'].to_i
     end
   end
@@ -60,8 +61,8 @@ class Artist
 
   def update()
     sql = "UPDATE artists SET (
-    name, logo) = ($1, $2) WHERE id = $3"
-    values = [@name, @logo, @id]
+    name, genre, logo) = ($1, $2) WHERE id = $3"
+    values = [@name, @genre, @logo, @id]
     SqlRunner.run(sql, values)
   end
 
@@ -91,6 +92,21 @@ class Artist
     values = ["%#{search}%"]
     artists = SqlRunner.run(sql, values)
     return artists.map{|artist| Artist.new(artist)}
+  end
+
+  def select_sales_id
+    sql = "SELECT sales.id
+          FROM sales
+          INNER JOIN albums
+          ON albums.sale_id = sales.id
+          INNER JOIN artists
+          ON albums.artist_id = artists.id
+          WHERE artists.id = $1
+          LIMIT 1 OFFSET 0
+          "
+    values = [@id]
+    id = SqlRunner.run(sql, values)[0]['id'].to_i
+    return id
   end
 
 end

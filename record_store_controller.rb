@@ -30,7 +30,7 @@ post '/albums' do
   @artists = Artist.list_all()
   @albums = Album.list_all()
   @albums.map do |album|
-    puts album.sale_id = @sale.id
+    album.sale_id = @sale.id
     album.update()
   end
     erb(:albums)
@@ -71,10 +71,15 @@ post '/artists/message' do
 end
 
 get '/artists/:id' do
-  @sale = Sale.new('percent' => 100.00)
   @artist = Artist.find(params[:id])
   @albums = Album.list_all
   erb(:show_artists)
+end
+
+post '/artists/:id' do
+  @artist = Artist.find(params[:id])
+  @album = Album.find(params[:id])
+  binding.pry
 end
 
 get '/artists/:id/edit' do
