@@ -5,7 +5,7 @@ require_relative('album.rb')
 
 class Album
 
-  attr_accessor :id, :title, :artist_id, :sale_id, :buy_price, :sell_price, :quantity
+  attr_accessor :id, :title, :artist_id, :sale_id, :buy_price, :mark_up, :quantity
 
   def initialize(options)
     @id = options['id'].to_i
@@ -13,7 +13,7 @@ class Album
     @artist_id = options['artist_id'].to_i
     @sale_id = options['sale_id'].to_i
     @buy_price = options['buy_price'].to_f
-    @sell_price = options['sell_price'].to_f
+    @mark_up = options['mark_up'].to_f
     @quantity = options['quantity'].to_i
   end
 
@@ -76,27 +76,27 @@ class Album
     artist_id,
     sale_id,
     buy_price,
-    sell_price,
+    mark_up,
     quantity
     ) VALUES ( $1, $2, $3, $4, $5, $6 )
     RETURNING *'
-    values = [@title, @artist_id, @sale_id, @buy_price, @sell_price, @quantity]
+    values = [@title, @artist_id, @sale_id, @buy_price, @mark_up, @quantity]
     @id = SqlRunner.run(sql, values)[0]['id'].to_i
     end
   end
 
   def update()
     sql = "UPDATE albums SET (
-    title, artist_id, sale_id, buy_price, sell_price, quantity) = ($1, $2, $3, $4, $5, $6) WHERE id = $7"
-    values = [@title, @artist_id, @sale_id, @buy_price, @sell_price, @quantity, @id]
+    title, artist_id, sale_id, buy_price, mark_up, quantity) = ($1, $2, $3, $4, $5, $6) WHERE id = $7"
+    values = [@title, @artist_id, @sale_id, @buy_price, @mark_up, @quantity, @id]
     SqlRunner.run(sql, values)
   end
 
   def adjust_sell_price(sale)
-    @sell_price = @buy_price + 10
-    @sell_price = ((@sell_price * sale.percent)/ 100).round(2)
+    @mark_up = @mark_up + 10
+    @mark_up = ((@mark_up * sale.percent)/ 100).round(2)
     update()
-    return @sell_price
+    return @mark_up
   end
 
   def adjust_price
@@ -107,9 +107,9 @@ class Album
           WHERE albums.id = $1"
     values = [@id]
     percent = SqlRunner.run(sql, values).first['percent'].to_f
-    @sell_price = (((10 + @buy_price) * percent) / 100).round(2)
+    @mark_up = (((10 + @buy_price) * percent) / 100).round(2)
     update()
-    return @sell_price
+    return @mark_up
   end
 
   def delete()
@@ -143,7 +143,7 @@ class Album
   end
 
   def mark_up(sale)
-    result = @buy_price / adjust_sell_price(sale)
+    result = @buy_price / adjust_price
     return "#{(result * 100).to_i}%"
   end
 
