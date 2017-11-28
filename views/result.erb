@@ -44,7 +44,7 @@
     <% else %>
     <div class="results">
       <% @result_genre.each do |result| %>
-      <h2 style="color:white; font-size: 20px;"><a href="/artists/<%= result.id %> "><img src= "<%=result.logo%>" class="band_logo_small" alt="" /><%= result.name %></h2>
+      <h2 style="color:white; font-size: 20px;"><a href="/artists/<%= result.id %> "><img src= "<%=result.logo%>" class="band_logo_small" alt="" /><%= result.name %> - <%= result.genre %></h2>
         <% end %>
       </div>
       <% @result_genre = nil %>
