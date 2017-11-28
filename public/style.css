@@ -187,3 +187,8 @@ form {
   display: flex;
   justify-content: flex-end;
 }
+
+.show_artist_buttons {
+  display: flex;
+  justify-content: flex-start;
+}
