@@ -32,7 +32,7 @@ sale4.save()
 
 Album.delete_all()
 
-album1 = Album.new('title' => 'In the Nightside Eclipse', 'artist_id' => artist1.id, 'sale_id' => sale0.id, 'buy_price' => 2.99, 'mark_up' => 10, 'quantity' => 7)
+album1 = Album.new('title' => 'In the Nightside Eclipse', 'artist_id' => artist1.id, 'sale_id' => sale2.id, 'buy_price' => 2.99, 'mark_up' => 10, 'quantity' => 7)
 album1.save()
 album2 = Album.new('title' => 'Anthems to the Welkin at Dusk', 'artist_id' => artist1.id, 'sale_id' => sale0.id, 'buy_price' => 1.99, 'mark_up' => 10, 'quantity' => 10)
 album2.save()

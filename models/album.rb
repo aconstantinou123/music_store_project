@@ -142,9 +142,16 @@ class Album
     end
   end
 
-  def mark_up(sale)
-    result = @buy_price / adjust_price
-    return "#{(result * 100).to_i}%"
+  def mark_up_percent
+    sql = "SELECT sales.percent
+          FROM sales
+          INNER JOIN albums
+          ON albums.sale_id = sales.id
+          WHERE albums.id = $1"
+    values = [@id]
+    price = adjust_price
+    percent = SqlRunner.run(sql, values).first['percent'].to_f
+    return "#{percent.round}%"
   end
 
   def self.search_album(search)

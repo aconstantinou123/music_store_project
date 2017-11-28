@@ -20,7 +20,7 @@
       <th>Quantity </th>
       <th>Stock Level</th>
       <th>Buy Price (£)</th>
-      <th>Sell Price (£)</th>
+      <th>Sell Price (£) / Price adjustment for sale %</th>
       <th>Edit Album</th>
       <th>Delete Album</th>
 
@@ -32,7 +32,7 @@
       <td><%= album.quantity %></td>
       <td><%= album.stock_level %></td>
       <td><%= album.buy_price %></td>
-      <td><%= album.adjust_sell_price(@sale) %></td>
+      <td><%= album.adjust_price %></br></br><%= album.mark_up_percent %></td>
       <td><form action="/albums/<%= album.id %>/edit" method="get">
         <button class = "delete_button" type="submit" formaction="/albums/<%= album.id %>/edit">Edit Album Information</button>
       </form></td>
