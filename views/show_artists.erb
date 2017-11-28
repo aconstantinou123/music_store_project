@@ -13,8 +13,14 @@
   </form>
 </div>
 
+<form action="/artists/<%= @artist.id %>" method="post">
+  <input class="input" type="text" name="percent" placeholder="Enter % to reduce" required>
+  <input type="hidden" name="id" id="artist-field" value="<%= @artist.id %>"/>
+  <button class="button" type="submit">Apply Sale prices</button>
+
   <table style="width:100%">
     <tr>
+      <th>Apply Sale Price</th>
       <th>Title </th>
       <th>Quantity </th>
       <th>Stock Level</th>
@@ -22,12 +28,15 @@
       <th>Sell Price (£) / Price adjustment for sale %</th>
       <th>Edit Album</th>
       <th>Delete Album</th>
-
     </tr>
+        <% id = 1 %>
       <% @artist_albums = @artist.albums() %>
       <% @artist_albums.each do |album| %>
       <% id = "#{album.id}" %>
     <tr>
+      <td><input type="checkbox" name="<%= 1 %>" value="<%=album.id%>"/></td>
+        <% id = id.to_i + 1 %>
+</form>
       <td><%= album.title %></td>
       <td><%= album.quantity %></td>
       <td><%= album.stock_level %></td>

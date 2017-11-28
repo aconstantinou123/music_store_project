@@ -80,8 +80,9 @@ get '/artists/:id' do
 end
 
 post '/artists/:id' do
+  @sale = Sale.new(params)
+  @sale.save()
   @artist = Artist.find(params[:id])
-  @album = Album.find(params[:id])
   binding.pry
 end
 
