@@ -107,9 +107,9 @@ class Album
           WHERE albums.id = $1"
     values = [@id]
     percent = SqlRunner.run(sql, values).first['percent'].to_f
-    @mark_up = (((10 + @buy_price) * percent) / 100).round(2)
+    sell_price = (((@mark_up + @buy_price) * percent) / 100).round(2)
     update()
-    return @mark_up
+    return sell_price
   end
 
   def delete()
