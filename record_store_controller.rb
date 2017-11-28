@@ -38,6 +38,8 @@ post '/albums' do
 end
 
 get '/artists/:id/albums/new' do
+  @sale = Sale.new('percent' => 100)
+  @sale.save
   @artist = Artist.find(params[:id])
   erb(:new_album)
 end
