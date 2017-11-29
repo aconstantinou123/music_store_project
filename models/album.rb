@@ -29,6 +29,14 @@ class Album
     return albums.map{|artist| Album.new(artist)}
   end
 
+  def self.list_by_quantity
+    sql = "SELECT *
+          FROM albums
+          ORDER by quantity DESC"
+    albums = SqlRunner.run(sql)
+    return albums.map{|artist| Album.new(artist)}
+  end
+
   def self.find(id)
     sql = "SELECT * FROM albums
           WHERE id = $1"

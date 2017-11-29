@@ -29,6 +29,12 @@ get '/albums' do
     erb(:"album/albums")
 end
 
+get '/albums' do
+  @artists = Artist.list_all()
+  @albums = Album.list_by_quantity()
+    erb(:"album/albums")
+end
+
 post '/albums' do
   @sale = Sale.new(params)
   @sale.save()
