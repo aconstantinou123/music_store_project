@@ -11,6 +11,7 @@ CREATE TABLE artists (
 
 CREATE TABLE sales (
   id SERIAL4 PRIMARY KEY,
+  date_created TIMESTAMP NOT NULL DEFAULT(current_timestamp),
   percent FLOAT
 );
 

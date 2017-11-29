@@ -5,10 +5,14 @@ require_relative('models/album.rb')
 require_relative('models/artist.rb')
 require_relative('models/sale.rb')
 
+get '/' do
+  erb(:index)
+end
+
 get '/artists' do
   @artists = Artist.list_all()
   @albums = Album.list_all()
-  erb(:artists)
+  erb(:"artist/artists")
 end
 
 get '/result' do
@@ -16,13 +20,13 @@ get '/result' do
   @result_artist = Artist.search_artist(@result)
   @result_album = Album.search_album(@result)
   @result_genre = Artist.search_genre(@result)
-  erb(:result)
+  erb(:"all/result")
 end
 
 get '/albums' do
   @artists = Artist.list_all()
   @albums = Album.list_all()
-    erb(:albums)
+    erb(:"album/albums")
 end
 
 post '/albums' do
@@ -34,26 +38,26 @@ post '/albums' do
     album.sale_id = @sale.id
     album.update()
   end
-    erb(:albums)
+    erb(:"album/albums")
 end
 
 get '/artists/:id/albums/new' do
   @sale = Sale.new('percent' => 100)
   @sale.save
   @artist = Artist.find(params[:id])
-  erb(:new_album)
+  erb(:"album/new_album")
 end
 
 post '/albums/album_message' do
   @album = Album.new(params)
   @result = @album.check_name
   @album.save()
-  erb (:album_message)
+  erb (:"album/album_message")
 end
 
 get '/albums/:id/edit' do
   @album = Album.find(params[:id])
-  erb(:edit_album)
+  erb(:"album/edit_album")
 end
 
 put '/albums/:id' do
@@ -63,20 +67,20 @@ end
 
 get '/artists/new' do
   @artists = Artist.list_all()
-  erb(:new)
+  erb(:"artist/new")
 end
 
 post '/artists/message' do
   @artist = Artist.new(params)
   @result = @artist.check_name
   @artist.save()
-  erb(:message)
+  erb(:"artist/message")
 end
 
 get '/artists/:id' do
   @artist = Artist.find(params[:id])
   @albums = Album.list_all
-  erb(:show_artists)
+  erb(:"artist/show_artists")
 end
 
 post '/artists/:id' do
@@ -99,7 +103,7 @@ end
 
 get '/artists/:id/edit' do
   @artist = Artist.find(params[:id])
-  erb(:edit)
+  erb(:"artist/edit")
 end
 
 put '/artists/:id' do

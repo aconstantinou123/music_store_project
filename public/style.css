@@ -1,5 +1,15 @@
+
 body, html {
     font-family: Helvetica, Arial, sans-serif !important;
+}
+
+header{
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:60px;
+  background-color: black
 }
 
 #background {
@@ -8,15 +18,27 @@ body, html {
     position: fixed;
     left: 0px;
     top: 0px;
-    z-index: -1;
+    z-index: -2;
 }
 
  .shop_logo {
+    filter: invert(100%);
     margin:auto;
     display: block;
     position: relative;
     left: 0px;
     top: 0px;
+}
+
+.black_background {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:150px;
+    background-color: black;
+    background-clip: border-box;
+    z-index: -1;
 }
 
 .band_logo {
@@ -30,9 +52,23 @@ body, html {
   padding-right: 10px;
 }
 
+.shop_logo.small {
+  filter: invert(0%);
+  border: 2px solid white;
+  width: 550px;
+}
+
 .stretch {
     width:100%;
     height:100%;
+}
+
+h1 {
+  padding-top: 1px;
+  margin-bottom: 5px;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  font-family: "UnifrakturCook";
+  font-size: 75px;
 }
 
 h2 {
@@ -106,6 +142,12 @@ a:hover
     display: inline-block;
     margin-right:5px;
 }
+
+  .homepage_buttons {
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
 
 .button:hover
 {
