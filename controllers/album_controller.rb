@@ -33,7 +33,7 @@ post '/albums' do
     @albums.map do |album|
       album.sale_id = @sale.id
       album.update()
-  end
+    end
     erb(:"album/albums")
 end
 
