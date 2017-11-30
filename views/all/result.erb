@@ -27,7 +27,7 @@
   <% else %>
   <div class="results">
     <% @result_album.each do |result| %>
-    <h2 style="color:white; font-size: 20px;"><a href="/artists/<%= result.artist_id %> ">- <%= result.title %></h2>
+    <h2 style="color:white; font-size: 20px;"><a href="/artists/<%= result.artist_id %> "><img src= "<%=result.artist.logo%>" class="band_logo_small" alt="" /><%= result.title %> - <%= result.artist.name %></h2>
       <% end %>
     </div>
     <% @result_album = nil %>

@@ -51,7 +51,7 @@ post '/artists/:id' do
   @sale = Sale.new(params)
   @sale.save()
   @albums = Album.selective_sale_price(params, @sale)
-    redirect to '/albums'
+    erb(:"artist/show_artists")
 end
 
 get '/artists/:id/edit' do
