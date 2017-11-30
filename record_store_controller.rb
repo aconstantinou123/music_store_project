@@ -10,8 +10,16 @@ get '/' do
 end
 
 get '/artists' do
-  @artists = Artist.list_all()
   @albums = Album.list_all()
+if params[:order] == "artist"
+  @artists = Artist.list_all()
+elsif params[:order] == "genre"
+  @artists = Artist.list_by_genre()
+elsif params[:order] == "stock"
+  @artists = Artist.list_by_albums_quant()
+else
+  @artists = Artist.list_all()
+end
   erb(:"artist/artists")
 end
 

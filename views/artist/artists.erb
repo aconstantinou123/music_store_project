@@ -16,9 +16,18 @@
 
     <table style="width:100%">
       <tr>
-        <th>Band Name</th>
-        <th>Genre</th>
-        <th>Total Stock </th>
+        <th><form action="/artists" method="get">
+          <input type="hidden" name="order" value="artist"/>
+          <button class = "table_button" type="submit" formaction="/artists">Band Name</button>
+        </form></th>
+        <th><form action="/artists" method="get">
+          <input type="hidden" name="order" value="genre"/>
+          <button class = "table_button" type="submit" formaction="/artists">Genre</button>
+        </form></th>
+        <th><form action="/artists" method="get">
+          <input type="hidden" name="order" value="stock"/>
+          <button class = "table_button" type="submit" formaction="/artists">Total Stock</button>
+        </form></th>
       </tr>
         <% @artists.each do |artist| %>
       <tr>
