@@ -16,12 +16,17 @@
 
 <table class="info_table" style="width:100%">
   <tr>
-    <th>Title </th>
-    <th>Artist </th>
+    <th>
+      <form action="/albums" method="post">
+        <input type="hidden" name="order" value="stock"/>
+        <button class = "button" type="submit" formaction="/albums">Title</button>
+      </form></th>
+    <th>Artist</th>
     <th>Stock Level</th>
     <th>
       <form action="/albums" method="post">
-        <button class = "button" type="submit" formaction="/albums">Stock</button>
+        <input type="hidden" name="order" value="title"/>
+        <button class = "button" type="submit" value="stock" formaction="/albums">Stock</button>
       </form></th>
     <th>Buy Price (£)</th>
     <th>Sell Price (£) / Price adjustment for sale %</th>
