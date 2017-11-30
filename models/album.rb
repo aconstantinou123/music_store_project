@@ -29,6 +29,18 @@ class Album
     return albums.map{|artist| Album.new(artist)}
   end
 
+  def self.list_by_artist_name
+    sql = "SELECT artists.*, albums.*
+          FROM artists
+          INNER JOIN albums
+          ON artists.id = albums.artist_id
+          ORDER by artists.name ASC, albums.title ASC
+          "
+    albums = SqlRunner.run(sql)
+    return albums.map{|artist| Album.new(artist)}
+  end
+
+
   def self.list_by_quantity
     sql = "SELECT *
           FROM albums

@@ -149,9 +149,31 @@ a:hover
     justify-content: center;
   }
 
+  .table_button {
+
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    color: white;
+    font-size: 18px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 1500;
+    line-height: 15px;
+
+        }
+
 .button:hover
 {
      color:#444444;
+     cursor:pointer;
+}
+
+.table_button:hover
+{
+     color:black;
      cursor:pointer;
 }
 

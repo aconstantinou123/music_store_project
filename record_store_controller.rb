@@ -34,6 +34,8 @@ get '/albums' do
     @albums = Album.list_by_sell_price
   elsif params[:order] == "buy"
     @albums = Album.list_by_buy_price
+  elsif params[:order] == "artist"
+    @albums = Album.list_by_artist_name
   else
     @albums = Album.list_all()
   end

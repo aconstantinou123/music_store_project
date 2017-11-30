@@ -19,25 +19,29 @@
     <th>
       <form action="/albums" method="get">
         <input type="hidden" name="order" value="stock"/>
-        <button class = "button" type="submit" formaction="/albums">Title</button>
+        <button class = "table_button" type="submit" formaction="/albums">Title</button>
       </form></th>
-    <th>Artist</th>
+    <th>
+      <form action="/albums" method="get">
+        <input type="hidden" name="order" value="artist"/>
+        <button class = "table_button" type="submit" formaction="/albums">Artist</button></form>
+      </th>
   <th>Stock Level</th>
     <th>
       <form action="/albums" method="get">
         <input type="hidden" name="order" value="title"/>
-        <button class = "button" type="submit" value="stock" formaction="/albums">Stock</button>
+        <button class = "table_button" type="submit" value="stock" formaction="/albums">Stock</button>
       </form></th>
   <th>
     <form action="/albums" method="get">
       <input type="hidden" name="order" value="buy"/>
-      <button class = "button" type="submit" value="stock" formaction="/albums">Buy Price (£)</button>
+      <button class = "table_button" type="submit" value="stock" formaction="/albums">Buy Price (£)</button>
     </form>
   </th>
     <th>
       <form action="/albums" method="get">
         <input type="hidden" name="order" value="sell"/>
-        <button class = "button" type="submit" value="stock" formaction="/albums">Sell Price (£) / Price adjustment for sale %</button>
+        <button class = "table_button" type="submit" value="stock" formaction="/albums">Sell Price (£) / Price adjustment for sale %</button>
       </form></th>
     <th>Edit Album</th>
     <th>Delete Album</th>
