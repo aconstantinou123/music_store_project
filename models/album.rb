@@ -37,7 +37,15 @@ class Album
     return albums.map{|artist| Album.new(artist)}
   end
 
-  def self.list_by_price
+  def self.list_by_buy_price
+    sql = "SELECT *
+          FROM albums
+          ORDER by buy_price DESC"
+    albums = SqlRunner.run(sql)
+    return albums.map{|artist| Album.new(artist)}
+  end
+
+  def self.list_by_sell_price
     sql = "SELECT albums.*
           FROM albums
           INNER JOIN sales

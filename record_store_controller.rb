@@ -30,6 +30,10 @@ get '/albums' do
     @albums = Album.list_all
   elsif params[:order] == "title"
     @albums = Album.list_by_quantity
+  elsif params[:order] == "sell"
+    @albums = Album.list_by_sell_price
+  elsif params[:order] == "buy"
+    @albums = Album.list_by_buy_price
   else
     @albums = Album.list_all()
   end
@@ -92,7 +96,7 @@ get '/artists/:id' do
 end
 
 post '/artists/:id' do
-  @album = Album.find(params[:id])
+  @artist = Artist.find(params[:id])
   @sale = Sale.new(params)
   @sale.save()
   @albums = params.map{|k, v| v}
