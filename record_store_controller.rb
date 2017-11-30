@@ -26,17 +26,18 @@ end
 
 get '/albums' do
   @artists = Artist.list_all()
-  @albums = Album.list_all()
-    erb(:"album/albums")
+  if params[:order] == "stock"
+    @albums = Album.list_all
+  elsif params[:order] == "title"
+    @albums = Album.list_by_quantity
+  else
+    @albums = Album.list_all()
+  end
+  erb(:"album/albums")
 end
 
 
 post '/albums' do
-if params[:order] == "stock"
-    @albums = Album.list_all
-elsif params[:order] == "title"
-    @albums = Album.list_by_quantity
-else
     @sale = Sale.new(params)
     @sale.save()
     @artists = Artist.list_all()
@@ -44,7 +45,6 @@ else
     @albums.map do |album|
       album.sale_id = @sale.id
       album.update()
-    end
   end
     erb(:"album/albums")
 end

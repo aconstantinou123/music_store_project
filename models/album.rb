@@ -37,6 +37,16 @@ class Album
     return albums.map{|artist| Album.new(artist)}
   end
 
+  def self.list_by_price
+    sql = "SELECT albums.*
+          FROM albums
+          INNER JOIN sales
+          ON albums.sale_id = sales.id
+          ORDER by (buy_price + mark_up) * sales.percent DESC, title ASC"
+    albums = SqlRunner.run(sql)
+    return albums.map{|artist| Album.new(artist)}
+  end
+
   def self.find(id)
     sql = "SELECT * FROM albums
           WHERE id = $1"
