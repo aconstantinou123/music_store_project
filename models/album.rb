@@ -91,6 +91,22 @@ class Album
     return total
   end
 
+  def self.selective_sale_price(params, sale)
+    album_ids = params.map{|k, v| v}
+    album_ids.shift(2)
+    album_ids.pop
+    albums = []
+    for album_id in album_ids
+      albums.push(self.find(album_id))
+    end
+      for album in albums
+        album.sale_id = sale.id
+        album.update
+      end
+    return albums
+  end
+
+
   def check_name
     result = false
     sql = "SELECT albums.title FROM albums
