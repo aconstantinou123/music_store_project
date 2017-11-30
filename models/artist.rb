@@ -23,6 +23,25 @@ class Artist
     return artists.map{|artist| Artist.new(artist)}
   end
 
+  def self.list_by_genre()
+    sql = "SELECT *
+          FROM artists
+          ORDER BY genre ASC"
+    artists = SqlRunner.run(sql)
+    return artists.map{|artist| Artist.new(artist)}
+  end
+
+  def self.list_by_albums_quant()
+    sql = "SELECT artists.*
+          FROM albums
+          INNER JOIN artists
+          ON albums.artist_id = artists.id
+          GROUP BY artists.id
+          ORDER BY SUM(quantity) DESC"
+    artists = SqlRunner.run(sql)
+    return artists.map{|artist| Artist.new(artist)}
+  end
+
   def self.find(id)
     sql = "SELECT * FROM artists
           WHERE id = $1"
